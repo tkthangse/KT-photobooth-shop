@@ -38,8 +38,8 @@ function App() {
 }}>
   Chào mừng các vợ đã đến với tiệm photobooth của anh.<br/>
   Một lưu ý quan trọng là tất cả các ảnh của các vợ<br/>
-  chụp hoặc tải lên sẽ không lưu lại hệ thống đâu nhé.<br/>
-  Các vợ yên tâm nhoa 💖
+  chụp hoặc tải lên sẽ không lưu lại máy chủ đâu nhé.<br/>
+  Các vợ yên tâm sử dụng nhoa 💖
 </p>
 
         <button

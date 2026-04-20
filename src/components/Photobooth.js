@@ -70,7 +70,6 @@ const stickerOptions = [
     "/assets/stickers/sparkles.png"
 ];
 
-const videoConstraints = { width: 953, height: 599, facingMode: "user" };
 const SLOT_WIDTH = 953;
 const SLOT_HEIGHT = 599;
 
@@ -128,7 +127,6 @@ export default function PhotoBooth() {
     const [stickers, setStickers] = useState([]);
     const [draggingSticker, setDraggingSticker] = useState(null);
     const [selectedSticker, setSelectedSticker] = useState(null);
-    const row = { display: "flex", gap: 40, alignItems: "flex-start" };
     const [autoMode, setAutoMode] = useState(false);
     // useEffects
 
@@ -185,12 +183,14 @@ export default function PhotoBooth() {
         });
     };
 
-    useEffect(drawCanvas, [photos, stickers, selectedSticker, photoCount]);
+    useEffect(() => {
+  drawCanvas();
+}, [photos, stickers, selectedSticker, photoCount, slots]);
     useEffect(() => {
         photoCountRef.current = photoCount;
     }, [photoCount]);
     const handleBack = () => {
-        if (mode == "decorate") {
+        if (mode === "decorate") {
             setMode("photo");
             setCanTakePhoto(false);
             setStickers([]);
@@ -546,7 +546,7 @@ const detectSlotsFromFrame = (img) => {
                 selectedSticker != null &&
                 mode === "decorate"
             ){
-                setStickers(s => s.filter((_,i) => i != selectedSticker));
+                setStickers(s => s.filter((_,i) => i !== selectedSticker));
                 setSelectedSticker(null);
             }
         };
