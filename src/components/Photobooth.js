@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 
 const frameOptions = [
@@ -142,9 +142,9 @@ export default function PhotoBooth() {
             setDetectedSlots(detectedSlots);
             drawCanvas();
         }
-    }, [selectedFrame, drawCanvas]);
+    }, [selectedFrame]);
 
-   const drawCanvas = useCallback(() => {
+    const drawCanvas = () => {
         const canvas = canvasRef.current;
         if (!canvas || !frameImgRef.current) return;
 
@@ -181,12 +181,11 @@ export default function PhotoBooth() {
                 ctx.strokeRect(s.x, s.y, 150, 150);
             }
         });
-    }, [photos, slots, stickers, selectedSticker]);;
+    };
 
-        useEffect(() => {
-        drawCanvas();
-        }, [drawCanvas]);
-
+    useEffect(() => {
+  drawCanvas();
+}, [photos, stickers, selectedSticker, photoCount, slots]);
     useEffect(() => {
         photoCountRef.current = photoCount;
     }, [photoCount]);
